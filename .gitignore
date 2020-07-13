@@ -130,4 +130,6 @@ dmypy.json
 
 #Temperature Logs Folder
 Temperature_Logs/
+
+#Config.txt
 config.txt
