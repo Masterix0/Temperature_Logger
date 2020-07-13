@@ -29,7 +29,6 @@ if not logs_path.exists():
     logs_path.mkdir()
 
 # Main body
-
 while True:
     # Checks what day it is and, if it's a later date than the one
     # we're working with, changes the current day
@@ -44,7 +43,7 @@ while True:
     current_time = datetime.datetime.now()
 
     # Writes the new temperature reading to today's log
-    with open((logs_path / current_day.isoformat()), 'a') as todays_log:
+    with open(((logs_path / current_day.isoformat()) + ".txt"), 'a') as todays_log:
         todays_log.write('{hour}:{minutes}:{seconds}-{temperature}\n'.format(
             hour=current_time.hour, minutes=current_time.minute,
             seconds=current_time.second, temperature=current_temp))

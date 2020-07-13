@@ -13,7 +13,7 @@ from email.mime.multipart import MIMEMultipart
 import temperature_config_reader
 
 # Read config
-username, password, email_subject_start, email_body, \
+username, password, email_subject, email_body, \
     email_receiver = temperature_config_reader.get_email_credentials()
 
 
@@ -21,13 +21,13 @@ username, password, email_subject_start, email_body, \
 def send_email():
     # Get the day of the readings as a string
     readings_date = (datetime.date.today() -
-                     datetime.timedelta(days=-1)).isoformat()
+                     datetime.timedelta(days=1)).isoformat()
 
     # Create a multipart message and set headers
     message = MIMEMultipart()
     message["From"] = username
     message["To"] = email_receiver
-    message["Subject"] = email_subject_start + readings_date
+    message["Subject"] = email_subject
 
     # Add body to email
     message.attach(MIMEText(email_body, "plain"))

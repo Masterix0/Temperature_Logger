@@ -63,7 +63,7 @@ def get_email_credentials():
 
     username_line = find_line('email_username')
     password_line = find_line('email_password')
-    subject_start_line = find_line('email_subject_start')
+    subject_line = find_line('email_subject')
     body_line = find_line('email_body')
     receiver_line = find_line('email_receiver')
 
@@ -71,8 +71,8 @@ def get_email_credentials():
 
     password = password_line[(password_line.index('=') + 1):].lstrip(' \n')
 
-    subject_start = subject_start_line[(
-        subject_start_line.index('=') + 1):].lstrip(' \n')
+    subject = subject_line[(
+        subject_line.index('=') + 1):].lstrip(' \n')
 
     body = eval(
         body_line[(body_line.index('=') + 1):].lstrip(' \n'))
@@ -80,4 +80,4 @@ def get_email_credentials():
     receiver = receiver_line[(
         receiver_line.index('=') + 1):].lstrip(' \n')
 
-    return (username, password, subject_start, body, receiver)
+    return (username, password, subject, body, receiver)
