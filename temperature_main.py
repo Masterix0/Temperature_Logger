@@ -6,6 +6,7 @@ import pathlib
 # Import custom libraries
 import temperature_parser
 import temperature_config_reader
+import temperature_email
 
 # Initializes variables from the config file
 
@@ -35,6 +36,8 @@ while True:
     now = datetime.date.today()
     if now > current_day:
         current_day = now
+        if email_on:
+            temperature_email.send_email()
 
     # Gets the current temperature and time
     current_temp = temperature_parser.get_temp()
