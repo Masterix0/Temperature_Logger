@@ -2,4 +2,17 @@
 #program will log a new temperature reading, deafult is 10 minutes)
 pol_interval = 10
 
-#
+#Email username
+email_username = bot.cervejeiro@gmail.com
+
+#Email password
+email_password = rr6nsr6MR!QPKYd7D#ePPQ8$b5bXfFD4
+
+#The start of your email subject
+email_subject_start = Temperature readings from 
+
+#Your email body
+email_body = "This email has your temperature readings from today, sent as an attachment.\n\nBest regards,\nBot Cervejeiro"
+
+#Receiver email
+email_receiver = andregoncalves2001@hotmail.com

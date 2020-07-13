@@ -45,3 +45,30 @@ def get_pol_time():
     pol_time = int(pol_time)
 
     return pol_time
+
+
+def get_email_credentials():
+    """
+    Returns an array containing the email details
+    """
+
+    username_line = find_line('email_username')
+    password_line = find_line('email_password')
+    subject_start_line = find_line('email_subject_start')
+    body_line = find_line('email_body')
+    receiver_line = find_line('email_receiver')
+
+    username = username_line[(username_line.index('=') + 1):].lstrip(' \n')
+
+    password = password_line[(password_line.index('=') + 1):].lstrip(' \n')
+
+    subject_start = subject_start_line[(
+        subject_start_line.index('=') + 1):].lstrip(' \n')
+
+    body = eval(
+        body_line[(body_line.index('=') + 1):].lstrip(' \n'))
+
+    receiver = receiver_line[(
+        receiver_line.index('=') + 1):].lstrip(' \n')
+
+    return (username, password, subject_start, body, receiver)
