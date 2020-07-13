@@ -10,6 +10,7 @@ import temperature_config_reader
 # Initializes variables from the config file
 
 pol_time = temperature_config_reader.get_pol_time()
+email_on = temperature_config_reader.get_email_on()
 
 
 # Initializes variables based on time

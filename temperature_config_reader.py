@@ -47,6 +47,15 @@ def get_pol_time():
     return pol_time
 
 
+def get_email_on():
+    email_on_line = find_line('email_on')
+
+    email_on = eval(
+        email_on_line[(email_on_line.index('=') + 1):].lstrip(' \n'))
+
+    return email_on
+
+
 def get_email_credentials():
     """
     Returns an array containing the email details
