@@ -33,7 +33,7 @@ def send_email():
     message.attach(MIMEText(email_body, "plain"))
 
     # Fetch filepath
-    filename = (readings_date + '.txt')
+    filename = (readings_date + '.csv')
     filepath = Path.cwd() / 'Temperature_Logs' / filename
 
     # Open file in binary mode

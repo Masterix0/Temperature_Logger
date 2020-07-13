@@ -7,6 +7,7 @@ import pathlib
 import temperature_parser
 import temperature_config_reader
 import temperature_email
+import temperature_plot
 
 # Initializes variables from the config file
 
@@ -27,7 +28,7 @@ logs_path = current_path / 'Temperature_Logs'
 
 if not logs_path.exists():
     logs_path.mkdir()
-
+"""
 # Main body
 while True:
     # Checks what day it is and, if it's a later date than the one
@@ -43,9 +44,11 @@ while True:
     current_time = datetime.datetime.now()
 
     # Writes the new temperature reading to today's log
-    with open(((logs_path / current_day.isoformat()) + ".txt"), 'a') as todays_log:
-        todays_log.write('{hour}:{minutes}:{seconds}-{temperature}\n'.format(
-            hour=current_time.hour, minutes=current_time.minute,
-            seconds=current_time.second, temperature=current_temp))
+    with open((str(logs_path / current_day.isoformat()) + ".csv"), 'a') as todays_log:
+        todays_log.write('{time},{temperature}\n'.format(
+            time=current_time.strftime("%H:%M:%S"), temperature=current_temp))
 
     time.sleep(pol_time)
+"""
+
+temperature_plot.create_plot_png()
