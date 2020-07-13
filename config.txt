@@ -1,0 +1,5 @@
+#Polling interval, expressed in seconds (sets the interval in which your
+#program will log a new temperature reading, deafult is 10 minutes)
+pol_interval = 600
+
+#
