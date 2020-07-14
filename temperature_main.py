@@ -32,7 +32,7 @@ if not logs_path.exists():
 
 if not graphs_path.exists():
     graphs_path.mkdir()
-"""
+
 # Main body
 while True:
     # Checks what day it is and, if it's a later date than the one
@@ -53,7 +53,3 @@ while True:
             time=current_time.strftime("%H:%M:%S"), temperature=current_temp))
 
     time.sleep(pol_time)
-"""
-
-temperature_plot.create_plot_png()
-temperature_email.send_email()
