@@ -25,9 +25,13 @@ current_day = datetime.date.today()
 
 current_path = pathlib.Path.cwd()
 logs_path = current_path / 'Temperature_Logs'
+graphs_path = current_path / 'Temperature_Graphs'
 
 if not logs_path.exists():
     logs_path.mkdir()
+
+if not graphs_path.exists():
+    graphs_path.mkdir()
 """
 # Main body
 while True:
@@ -52,3 +56,4 @@ while True:
 """
 
 temperature_plot.create_plot_png()
+temperature_email.send_email()

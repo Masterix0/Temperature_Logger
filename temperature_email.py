@@ -33,11 +33,13 @@ def send_email():
     message.attach(MIMEText(email_body, "plain"))
 
     # Fetch filepath
-    filename = (readings_date + '.csv')
-    filepath = Path.cwd() / 'Temperature_Logs' / filename
+    log_name = (readings_date + '.csv')
+    log_path = Path.cwd() / 'Temperature_Logs' / log_name
+    graph_name = (readings_date + '.png')
+    graph_path = Path.cwd() / 'Temperature_Graphs' / graph_name
 
     # Open file in binary mode
-    with open(filepath, "rb") as attachment:
+    with open(log_path, "rb") as attachment:
         # Add file as application/octet-stream
         # Email client can usually download this automatically as attachment
         part = MIMEBase("application", "octet-stream")
@@ -49,11 +51,31 @@ def send_email():
     # Add header as key/value pair to attachment part
     part.add_header(
         "Content-Disposition",
-        "attachment; filename= {filename}".format(filename=filename),
+        "attachment; filename= {log_name}".format(log_name=log_name),
     )
 
     # Add attachment to message and convert message to string
     message.attach(part)
+
+    # Open file in binary mode
+    with open(graph_path, "rb") as attachment:
+        # Add file as application/octet-stream
+        # Email client can usually download this automatically as attachment
+        part = MIMEBase("application", "octet-stream")
+        part.set_payload(attachment.read())
+
+    # Encode file in ASCII characters to send by email
+    encoders.encode_base64(part)
+
+    # Add header as key/value pair to attachment part
+    part.add_header(
+        "Content-Disposition",
+        "attachment; filename= {graph_name}".format(graph_name=graph_name),
+    )
+
+    # Add attachment to message and convert message to string
+    message.attach(part)
+
     text = message.as_string()
 
     # Log in to server using secure context and send email
