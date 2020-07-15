@@ -52,4 +52,7 @@ while True:
         todays_log.write('{time},{temperature}\n'.format(
             time=current_time.strftime("%H:%M:%S"), temperature=current_temp))
 
+    print("Time:{time} - Temp(deg C):{temperature}".format(
+        time=current_time.strftime("%H:%M:%S"), temperature=current_temp))
+
     time.sleep(pol_time)
