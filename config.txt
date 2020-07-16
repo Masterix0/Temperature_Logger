@@ -1,0 +1,23 @@
+#Polling interval, expressed in seconds (sets the interval in which your
+#program will log a new temperature reading, default is 5 minutes)
+pol_interval = 300
+
+#Email usage (whether you want the program to email you with relevant information)
+#Either write "True" or "False", be careful with lower and upper case characters,
+#as these will break the program
+email_on = True
+
+#Email username
+email_username = xxxxxxxx@gmail.com
+
+#Email password
+email_password = password12345678
+
+#Your email's subject
+email_subject = Yesterday's temperature data 
+
+#Your email body
+email_body = "This email has your temperature readings from today, sent as an attachment.\n\nBest regards,\nTemperature Reader"
+
+#Receiver email
+email_receiver = xxxxxxxx@gmail.com
