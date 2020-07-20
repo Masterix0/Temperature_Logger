@@ -57,3 +57,17 @@ def get_email_alert_details():
     return (alert_details["alert_email_subject"],
             alert_details["alert_email_body"],
             alert_details["alert_email_receiver"])
+
+
+def get_alert_temps():
+    """
+    Returns an array with the min and max 
+    temps required for an alert to go off,
+    as well as the value of the sensitivity
+    used to calculate whether a new alert is
+    sent after a bad temp
+    """
+
+    alert_details = config["temperature_alert_email"]
+
+    return (alert_details["alert_min_temp"], alert_details["alert_max_temp"], alert_details["alert_temp_scaling"])

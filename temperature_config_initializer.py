@@ -43,9 +43,11 @@ else:
 if temperature_alert_on == "yes":
     alert_email_on = True
     alert_min_temp = float(input(
-        "The LOWEST temp acceptable before getting an alert: "))
+        "The LOWEST temp acceptable before getting an alert (float): "))
     alert_max_temp = float(input(
-        "The HIGHEST temp acceptable before getting an alert: "))
+        "The HIGHEST temp acceptable before getting an alert (float): "))
+    alert_temp_scaling = float(input(
+        "The variation in temperature required to send a new\nemail after the last alert (float): "))
     alert_email_subject = input("Your alerts emails' subject: ")
     alert_email_body = input(
         "Your alert email body (written in string format)\nPLEASE use '{temperature}' to signal where you\nwant your temperature to go, as it will be used to format the string: ")
@@ -76,6 +78,7 @@ json_config = {
         "alert_email_on": alert_email_on,  # True
         "alert_min_temp": alert_min_temp,  # 16.0
         "alert_max_temp": alert_max_temp,  # 26.0
+        "alert_temp_scaling": alert_temp_scaling,  # 0.5
         "alert_email_subject": alert_email_subject,  # OOPS, Temperature Exceeded Limit
         "alert_email_body": alert_email_body,
         # "\"This email serves as a notification that your beer is currently
