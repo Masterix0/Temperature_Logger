@@ -11,19 +11,17 @@ from email.mime.multipart import MIMEMultipart
 
 # Import custom libraries
 import temperature_config_reader
+import temperature_parser
 
 # Read config for your email address and password
 username, password = temperature_config_reader.get_email_general_credentials()
 
 
 # Create a multipart message and set headers
-def send_email(username, password, email_subject, email_body, email_receiver):
+def send_email(email_subject, email_body, email_receiver, readings_date):
     """
     Sends an email with yesterday's info plotted into a graph
     """
-    # Get the day of the readings as a string
-    readings_date = (datetime.date.today() -
-                     datetime.timedelta(days=1)).isoformat()
 
     # Create a multipart message and set headers
     message = MIMEMultipart()
@@ -85,3 +83,33 @@ def send_email(username, password, email_subject, email_body, email_receiver):
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
         server.login(username, password)
         server.sendmail(username, email_receiver, text)
+
+
+def send_graph_email():
+    """
+    Send yesterday's readings and their corresponding graph
+    """
+
+    subject, body, receiver = temperature_config_reader.get_email_graph_details()
+
+    # Get yesterday as a string
+    readings_date = (datetime.date.today() -
+                     datetime.timedelta(days=1)).isoformat()
+
+    send_email(subject, body, receiver, readings_date)
+
+
+def send_alert_email():
+    """
+    Send today's readings and their corresponding graph,
+    as well as the current temperature
+    """
+
+    subject, body, receiver = temperature_config_reader.get_email_alert_details()
+
+    formated_body = body.format(temperature=temperature_parser.get_temp())
+
+    # Get today as a string
+    readings_date = (datetime.date.today()).isoformat()
+
+    send_email(subject, formated_body, receiver, readings_date)
