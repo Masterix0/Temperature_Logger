@@ -19,6 +19,9 @@ username, password, email_subject, email_body, \
 
 # Create a multipart message and set headers
 def send_plot_email():
+    """
+    Sends an email with yesterday's info plotted into a graph
+    """
     # Get the day of the readings as a string
     readings_date = (datetime.date.today() -
                      datetime.timedelta(days=1)).isoformat()

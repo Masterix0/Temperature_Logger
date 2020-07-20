@@ -53,7 +53,9 @@ while True:
         todays_log.write('{time},{temperature}\n'.format(
             time=current_time.strftime("%H:%M:%S"), temperature=current_temp))
 
+    # Prints the current time and temp to the interpreter
     print("Time:{time} - Temp(deg C):{temperature}".format(
         time=current_time.strftime("%H:%M:%S"), temperature=current_temp))
 
+    # Waits for however long you defined
     time.sleep(pol_time)
