@@ -41,7 +41,12 @@ while True:
     if now > current_day:
         current_day = now
         if email_on:
-            temperature_plot.create_plot_png()
+            # Finds out yesterday's date
+            yesterdays_date = (datetime.date.today() -
+                               datetime.timedelta(days=1)).isoformat()
+            # Creates yesterday's temps plot
+            temperature_plot.create_plot_png(yesterdays_date)
+            # Sends yesterday's data and corresponding plot through email
             temperature_email.send_plot_email()
 
     # Gets the current temperature and time

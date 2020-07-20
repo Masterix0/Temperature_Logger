@@ -7,13 +7,10 @@ import matplotlib.pyplot as plt
 from matplotlib.dates import DayLocator, HourLocator, DateFormatter
 
 
-def create_plot_png():
+def create_plot_png(readings_date):
     """
     Creates a png graph based on a day's readings
     """
-
-    readings_date = (datetime.date.today() -
-                     datetime.timedelta(days=1)).isoformat()
 
     readings_path = Path.cwd() / 'Temperature_Logs' / (readings_date + ".csv")
 

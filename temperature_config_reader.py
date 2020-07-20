@@ -56,28 +56,16 @@ def get_email_on():
     return email_on
 
 
-def get_email_credentials():
+def get_email_general_credentials():
     """
     Returns an array containing the email details
     """
 
     username_line = find_line('email_username')
     password_line = find_line('email_password')
-    subject_line = find_line('email_subject')
-    body_line = find_line('email_body')
-    receiver_line = find_line('email_receiver')
 
     username = username_line[(username_line.index('=') + 1):].lstrip(' \n')
 
     password = password_line[(password_line.index('=') + 1):].lstrip(' \n')
 
-    subject = subject_line[(
-        subject_line.index('=') + 1):].lstrip(' \n')
-
-    body = eval(
-        body_line[(body_line.index('=') + 1):].lstrip(' \n'))
-
-    receiver = receiver_line[(
-        receiver_line.index('=') + 1):].lstrip(' \n')
-
-    return (username, password, subject, body, receiver)
+    return (username, password)

@@ -1,56 +1,70 @@
-config_text = """
-#Polling interval, expressed in seconds (sets the interval in which your
-#program will log a new temperature reading, default is 5 minutes)
-pol_interval = {pol_interval}
-
-#Email usage (whether you want the program to email you with relevant information)
-#Either write "True" or "False", be careful with lower and upper case characters,
-#as these will break the program
-email_on = {email_on}
-
-#Email username
-email_username = {email_username}
-
-#Email password
-email_password = {email_password}
-
-#Your email's subject
-email_subject = {email_subject} 
-
-#Your email body
-email_body = "{email_body}"
-
-#Receiver email
-email_receiver = {email_receiver}
-"""
-
+import json
 
 print("Welcome to the Temperature Logger config initializer!")
 print("Please input the following deatils, so they can be written to the config file!")
 polling_interval = input(
     "Polling interval (delay between temperature reads, in seconds): ")
-email_on = input(
-    "Email usage (whether you want the program to email you with relevant information)\nYES or NO: ")
+emails_on = input(
+    "Email usage (whether you want the program to email you with relevant information)\nYES or NO: ").lower()
 
-if email_on.lower() == "yes":
+if emails_on == "yes":
+    email_on = "True"
     email_username = input(
         "The email address with which you want to send emails: ")
     email_password = input("That email's password: ")
-    email_subject = input("Your email's subject: ")
-    email_body = input(
-        "Your email body (written in string format. i.e: using \\ns): ")
-    email_receiver = input("Receiver email: ")
-    email_on = "True"
+    graph_on = input(
+        "Do you want the program to send you daily temperature graphs?\nYES or NO: ").lower
+    temperature_alert_on = input(
+        "Do you want the program to email you when the temperature goes over a certain threshold?\nYES or NO: ").lower()
 
 else:
-    email_username, email_password, email_subject, email_body, email_receiver = ''
     email_on = "False"
+    email_username, email_password = ""
+    graph_on, temperature_alert_on = "False"
 
-with open("config.txt", 'w') as config:
-    config.write(config_text.format(pol_interval=polling_interval,
-                                    email_on=email_on,
-                                    email_username=email_username,
-                                    email_password=email_password,
-                                    email_subject=email_subject,
-                                    email_body=email_body,
-                                    email_receiver=email_receiver))
+
+if graph_on == "yes":
+    graph_email_on = "True"
+    graph_email_subject = input("Your graphs emails' subject: ")
+    graph_email_body = input(
+        "Your graph email body (written in string format): ")
+    graph_email_receiver = input(
+        "Email address which will receive the graphs: ")
+
+else:
+    graph_email_subject, graph_email_body, graph_email_receiver = ''
+    graph_email_on = "False"
+
+if temperature_alert_on == "yes":
+    alert_email_on = "True"
+    alert_email_subject = input("Your alerts emails' subject: ")
+    alert_email_body = input(
+        "Your alert email body (written in string format): ")
+    alert_email_receiver = input(
+        "Email address which will receive the alerts: ")
+
+else:
+    alert_email_subject, alert_email_body, alert_email_receiver = ''
+    alert_email_on = "False"
+
+json_config = {
+    "polling_interval": polling_interval,
+    "email_on": email_on,
+    "email_username": email_username,
+    "email_password": email_password,
+    "graph_email": {
+        "graph_email_on": graph_email_on,
+        "graph_email_subject": graph_email_subject,
+        "graph_email_body": graph_email_body,
+        "graph_email_receiver": graph_email_receiver
+    },
+    "temperature_alert_email": {
+        "alert_email_on": alert_email_on,
+        "alert_email_subject": alert_email_subject,
+        "alert_email_body": alert_email_body,
+        "alert_email_receiver": alert_email_receiver
+    }
+}
+
+with open("config.json", 'w') as config:
+    json.dump(json_config, config)

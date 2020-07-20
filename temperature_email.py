@@ -12,13 +12,12 @@ from email.mime.multipart import MIMEMultipart
 # Import custom libraries
 import temperature_config_reader
 
-# Read config
-username, password, email_subject, email_body, \
-    email_receiver = temperature_config_reader.get_email_credentials()
+# Read config for your email address and password
+username, password = temperature_config_reader.get_email_general_credentials()
 
 
 # Create a multipart message and set headers
-def send_plot_email():
+def send_email(username, password, email_subject, email_body, email_receiver):
     """
     Sends an email with yesterday's info plotted into a graph
     """
