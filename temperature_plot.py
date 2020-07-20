@@ -6,17 +6,16 @@ import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.dates import DayLocator, HourLocator, DateFormatter
 
-readings_date = (datetime.date.today() -
-                 datetime.timedelta(days=1)).isoformat()
-
-
-readings_path = Path.cwd() / 'Temperature_Logs' / (readings_date + ".csv")
-
 
 def create_plot_png():
     """
     Creates a png graph based on a day's readings
     """
+
+    readings_date = (datetime.date.today() -
+                     datetime.timedelta(days=1)).isoformat()
+
+    readings_path = Path.cwd() / 'Temperature_Logs' / (readings_date + ".csv")
 
     def dateconv(s): return datetime.datetime.strptime(
         s.decode("utf-8"), "%H:%M:%S")
