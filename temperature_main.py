@@ -42,7 +42,7 @@ while True:
         current_day = now
         if email_on:
             temperature_plot.create_plot_png()
-            temperature_email.send_email()
+            temperature_email.send_plot_email()
 
     # Gets the current temperature and time
     current_temp = temperature_parser.get_temp()
