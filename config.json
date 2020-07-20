@@ -1,0 +1,18 @@
+{
+    "polling_interval": "300",
+    "email_on": "True",
+    "email_username": "bot.cervejeiro@gmail.com",
+    "email_password": "rr6nsr6MR!QPKYd7D#ePPQ8$b5bXfFD4",
+    "graph_email": {
+        "graph_email_on": "True",
+        "graph_email_subject": "Yesterday's temperature data",
+        "graph_email_body": "\"This email has your temperature readings from today, sent as an attachment.\\n\\nBest regards,\\nBot Cervejeiro\"",
+        "graph_email_receiver": "andregoncalves2001@hotmail.com"
+    },
+    "temperature_alert_email": {
+        "alert_email_on": "True",
+        "alert_email_subject": "OOPS, Temperature Exceeded Limit",
+        "alert_email_body": "\"This email serves as a notification that your beer is currently at {temperature} degrees.\\nToday's temperature graph is sent as an attachment.\\n\\nBest regards,\\nBot Cervejeiro.\"",
+        "alert_email_receiver": "andregoncalves2001@hotmail.com"
+    }
+}

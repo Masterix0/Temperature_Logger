@@ -13,7 +13,7 @@ if emails_on == "yes":
         "The email address with which you want to send emails: ")
     email_password = input("That email's password: ")
     graph_on = input(
-        "Do you want the program to send you daily temperature graphs?\nYES or NO: ").lower
+        "Do you want the program to send you daily temperature graphs?\nYES or NO: ").lower()
     temperature_alert_on = input(
         "Do you want the program to email you when the temperature goes over a certain threshold?\nYES or NO: ").lower()
 
@@ -39,7 +39,7 @@ if temperature_alert_on == "yes":
     alert_email_on = "True"
     alert_email_subject = input("Your alerts emails' subject: ")
     alert_email_body = input(
-        "Your alert email body (written in string format): ")
+        "Your alert email body (written in string format)\nPLEASE use '{temperature}' to signal where you\nwant your temperature to go, as it will be used to format the string: ")
     alert_email_receiver = input(
         "Email address which will receive the alerts: ")
 
