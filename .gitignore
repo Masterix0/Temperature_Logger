@@ -134,4 +134,4 @@ Temperature_Logs/
 #Temperature Graphs Folder
 Temperature_Graphs/
 
-.json
+config.json

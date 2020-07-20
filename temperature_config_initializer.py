@@ -2,13 +2,13 @@ import json
 
 print("Welcome to the Temperature Logger config initializer!")
 print("Please input the following deatils, so they can be written to the config file!")
-polling_interval = input(
-    "Polling interval (delay between temperature reads, in seconds): ")
+polling_interval = int(input(
+    "Polling interval (delay between temperature reads, in seconds): "))
 emails_on = input(
     "Email usage (whether you want the program to email you with relevant information)\nYES or NO: ").lower()
 
 if emails_on == "yes":
-    email_on = "True"
+    email_on = True
     email_username = input(
         "The email address with which you want to send emails: ")
     email_password = input("That email's password: ")
@@ -18,13 +18,13 @@ if emails_on == "yes":
         "Do you want the program to email you when the temperature goes over a certain threshold?\nYES or NO: ").lower()
 
 else:
-    email_on = "False"
+    email_on = False
     email_username, email_password = ""
     graph_on, temperature_alert_on = "False"
 
 
 if graph_on == "yes":
-    graph_email_on = "True"
+    graph_email_on = True
     graph_email_subject = input("Your graphs emails' subject: ")
     graph_email_body = input(
         "Your graph email body (written in string format): ")
@@ -33,10 +33,10 @@ if graph_on == "yes":
 
 else:
     graph_email_subject, graph_email_body, graph_email_receiver = ''
-    graph_email_on = "False"
+    graph_email_on = False
 
 if temperature_alert_on == "yes":
-    alert_email_on = "True"
+    alert_email_on = True
     alert_email_subject = input("Your alerts emails' subject: ")
     alert_email_body = input(
         "Your alert email body (written in string format)\nPLEASE use '{temperature}' to signal where you\nwant your temperature to go, as it will be used to format the string: ")
@@ -45,7 +45,7 @@ if temperature_alert_on == "yes":
 
 else:
     alert_email_subject, alert_email_body, alert_email_receiver = ''
-    alert_email_on = "False"
+    alert_email_on = False
 
 json_config = {
     "polling_interval": polling_interval,
